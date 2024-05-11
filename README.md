@@ -2,7 +2,7 @@
 
 # Etap 1 - implementacja
 
-## 1) naiwny klasyfikator Bayes'owski
+## 1) naiwny klasyfikator Bayes'a
 
 ## 2) BERT Hugging Face
 
@@ -12,6 +12,8 @@
 * Pytorch
 * TenserFlow
 * Transformers (Hugging Face)
+* RLTK
+* Spicy
 
 ## Modele AI
 * Lama (facebook)
