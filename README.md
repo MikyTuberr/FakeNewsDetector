@@ -28,3 +28,4 @@
 * Microsoft Word essa
 
 ## Dane: https://www.kaggle.com/datasets/hassanamin/textdb3
+    https://www.kaggle.com/datasets/saurabhshahane/fake-news-classification
