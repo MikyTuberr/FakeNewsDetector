@@ -3,4 +3,8 @@ pandas
 nltk
 pickle
 matplotlib
-sklearn
+scikit-learn
+torch
+transformers
+
+

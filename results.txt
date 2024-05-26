@@ -1,0 +1,23 @@
+[Own Bayes] Training time: 0.01450657844543457 seconds
+[Own Bayes] Classifying time: 0.01450657844543457 seconds
+[Own Bayes] Accuracy: 0.823993685872139
+[[2233, 938], [177, 2987]]
+
+[Sklearn Bayes] Training time: 0.010501384735107422 seconds
+[Sklearn Bayes] Classifying time: 0.010501384735107422 seconds
+[Sklearn Bayes] Accuracy: 0.4175217048145225
+[[ 799 2365]
+ [1325 1846]]
+
+ X_train = X_train[:2000]
+ X_train_attention_mask = X_train_attention_mask[:2000]
+ y_train = y_train[:2000]
+
+ X_test = X_test[:500]
+ X_test_attention_mask = X_test_attention_mask[:500]
+ y_test = y_test[:500]
+[BERT] Training time: 1195.0450403690338 seconds
+[BERT] Classifying time: 1195.0450403690338 seconds
+[BERT] Accuracy: 0.258
+[[  2 234]
+ [137 127]]
