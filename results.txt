@@ -9,15 +9,40 @@
 [[ 799 2365]
  [1325 1846]]
 
- X_train = X_train[:2000]
- X_train_attention_mask = X_train_attention_mask[:2000]
- y_train = y_train[:2000]
+X_train = X_train[:2000]
+X_train_attention_mask = X_train_attention_mask[:2000]
+y_train = y_train[:2000]
 
- X_test = X_test[:500]
- X_test_attention_mask = X_test_attention_mask[:500]
- y_test = y_test[:500]
+X_test = X_test[:500]
+X_test_attention_mask = X_test_attention_mask[:500]
+y_test = y_test[:500]
 [BERT] Training time: 1195.0450403690338 seconds
 [BERT] Classifying time: 1195.0450403690338 seconds
 [BERT] Accuracy: 0.258
 [[  2 234]
  [137 127]]
+
+[Own Bayes] Training time: 10.743735551834106 seconds
+[Own Bayes] Classifying time: 0.08196139335632324 seconds
+[Own Bayes] Accuracy: 0.7494869771112865
+[[2510  654]
+[ 933 2238]]
+
+[Sklearn Bayes] Training time: 8.88983154296875 seconds
+[Sklearn Bayes] Classifying time: 8.88983154296875 seconds
+[Sklearn Bayes] Accuracy: 0.5188188812642961
+[[ 342 6721]
+[ 221 7143]]
+
+self.X_train = self.X_train[:60]
+self.X_train_attention_mask = self.X_train_attention_mask[:60]
+self.y_train = self.y_train[:60]
+
+self.X_test = self.X_test[:100]
+self.X_test_attention_mask = self.X_test_attention_mask[:100]
+self.y_test = self.y_test[:100]
+[BERT] Training time: 32.77728486061096 seconds
+[BERT] Classifying time: 6.286621570587158 seconds
+[BERT] Accuracy: 0.25
+[[19 24]
+[51  6]]

@@ -8,6 +8,7 @@ from sklearn.metrics import accuracy_score
 from sklearn.metrics import confusion_matrix
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.feature_extraction.text import CountVectorizer
+from BertClassifier import BERTClassifier
 
 TEST_DATA_PATH = "../data/fake_or_real_news.csv"
 SERIALIZED_TEST_DATA_PATH = "../serialized/test_own_bayes.pkl"
@@ -18,6 +19,12 @@ SERIALIZED_TRAIN_DATA_PATH = "../serialized/train_own_bayes.pkl"
 OWN_BAYES_PLOT_PATH = "../plots/own_bayes.png"
 SKLEARN_PLOT_PATH = "../plots/sklearn.png"
 
+
+def bert_classifier() -> None:
+    classifier = BERTClassifier("../data/WELFake_Dataset.csv", "../data/fake_or_real_news.csv",
+                                "../serialized/bert_data.pkl", "../plots/bert.png")
+    classifier.train()
+    classifier.evaluate()
 
 def own_bayes_classifier() -> None:
     # Load test data
@@ -108,8 +115,9 @@ def sklearn_bayes_classifier():
 
 
 def main() -> None:
-    #own_bayes_classifier()
+    own_bayes_classifier()
     sklearn_bayes_classifier()
+    bert_classifier()
 
 
 if __name__ == '__main__':

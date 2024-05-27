@@ -66,7 +66,7 @@ class OwnNaiveBayesClassifier:
             for text in self.x_test:
                 fn_prob = math.log(self._prob_fn)
                 rn_prob = math.log(self._prob_rn)
-                words = random.choices(text, weights=None, k=max_features);
+                words = random.choices(text, weights=None, k=max_features)
                 #counter = 0
                 for word in words:
                     if word in self._words_probs_fn:
