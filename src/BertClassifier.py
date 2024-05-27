@@ -2,14 +2,13 @@ import pandas as pd
 import numpy as np
 import pickle
 import os
+from Plotter import Plotter
 from transformers import BertTokenizer
 from transformers import BertForSequenceClassification
 from torch.optim import AdamW
 import torch
 from sklearn.metrics import accuracy_score, confusion_matrix
 import time
-
-from src.ErrorCalculator import ErrorCalculator
 
 TRAIN_PATH = "../data/WELFake_Dataset.csv"
 TEST_PATH = "../data/fake_or_real_news.csv"
@@ -59,13 +58,13 @@ else:
     print("Shape of y_train:", y_train.shape)
     print("Shape of y_test:", y_test.shape)
 
-X_train = X_train[:2000]
-X_train_attention_mask = X_train_attention_mask[:2000]
-y_train = y_train[:2000]
+X_train = X_train[:100]
+X_train_attention_mask = X_train_attention_mask[:100]
+y_train = y_train[:100]
 
-X_test = X_test[:500]
-X_test_attention_mask = X_test_attention_mask[:500]
-y_test = y_test[:500]
+X_test = X_test[:100]
+X_test_attention_mask = X_test_attention_mask[:100]
+y_test = y_test[:100]
 
 model = BertForSequenceClassification.from_pretrained('bert-base-uncased', num_labels=2)
 
@@ -131,5 +130,4 @@ print("[BERT] Accuracy:", eval_accuracy)
 matrix = confusion_matrix(y_test, predictions)
 print(matrix)
 
-error_calculator = ErrorCalculator()
-error_calculator.show_confusion_matrix(matrix, PLOT_PATH)
+Plotter.show_confusion_matrix(matrix, PLOT_PATH)

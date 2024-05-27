@@ -1,10 +1,7 @@
-numpy
 pandas
 nltk
-pickle
-matplotlib
+numpy
 scikit-learn
+matplotlib
 torch
 transformers
-
-
