@@ -1,3 +1,5 @@
+from collections import Counter
+
 from sklearn.model_selection import train_test_split
 
 from src.OwnNaiveBayesClassifier import OwnNaiveBayesClassifier
@@ -20,6 +22,17 @@ OWN_BAYES_PLOT_PATH = "../plots/own_bayes.png"
 SKLEARN_PLOT_PATH = "../plots/sklearn.png"
 
 
+# Load test data
+#x_test, y_test = DataManager.load_or_preprocess_data(SERIALIZED_TEST_DATA_PATH, TEST_DATA_PATH, "text",
+# "title", "label")
+#y_test = [1 if label == 'REAL' else 0 for label in y_test]
+
+# Load train data
+x, y = DataManager.load_or_preprocess_data(SERIALIZED_TRAIN_DATA_PATH, TRAIN_DATA_PATH, "text",
+                                           "title", "label")
+
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=42)
+
 def bert_classifier() -> None:
     classifier = BERTClassifier("../data/WELFake_Dataset.csv", "../data/fake_or_real_news.csv",
                                 "../serialized/bert_data.pkl", "../plots/bert.png")
@@ -27,21 +40,6 @@ def bert_classifier() -> None:
     classifier.evaluate()
 
 def own_bayes_classifier() -> None:
-    # Load test data
-    x_test, y_test = DataManager.load_or_preprocess_data(SERIALIZED_TEST_DATA_PATH, TEST_DATA_PATH, "text",
-                                                          "title", "label")
-    y_test = [1 if label == 'REAL' else 0 for label in y_test]
-
-    # Load train data
-    x_train, y_train = DataManager.load_or_preprocess_data(SERIALIZED_TRAIN_DATA_PATH, TRAIN_DATA_PATH, "text",
-                                                            "title", "label")
-
-    #train_label_distribution = Counter(y_train)
-    #test_label_distribution = Counter(y_test)
-
-    #print("Training label distribution:", train_label_distribution)
-    #print("Test label distribution:", test_label_distribution)
-
     # Initialize classifier
     classifier = OwnNaiveBayesClassifier(x_train, y_train, x_test, y_test)
 
@@ -57,7 +55,7 @@ def own_bayes_classifier() -> None:
     # Begin classification
     start_time = time.time()
 
-    y_pred = classifier.classify(max_features=13)
+    y_pred = classifier.classify(max_features=50000)
 
     end_time = time.time()
     classifying_time = end_time - start_time
@@ -75,21 +73,10 @@ def own_bayes_classifier() -> None:
 
 
 def sklearn_bayes_classifier():
-    # Load test data
-    #x_test, y_test = DataManager.load_or_preprocess_data(SERIALIZED_TEST_DATA_PATH, TEST_DATA_PATH, "text",
-                                                        # "title", "label")
-    #y_test = [1 if label == 'REAL' else 0 for label in y_test]
-
-    # Load train data
-    x, y = DataManager.load_or_preprocess_data(SERIALIZED_TRAIN_DATA_PATH, TRAIN_DATA_PATH, "text",
-                                                           "title", "label")
-
-    x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=42)
-
     model = MultinomialNB()
 
     start_time = time.time()
-    vectorizer = CountVectorizer(max_features=12, stop_words='english', max_df=0.009, binary=True)
+    vectorizer = CountVectorizer(max_features=50000, stop_words='english', max_df=0.009, binary=True)
     X_train_counts = vectorizer.fit_transform([" ".join(text) for text in x_train])
     #print(vectorizer.get_feature_names_out())
     model.fit(X_train_counts, y_train)
@@ -117,7 +104,7 @@ def sklearn_bayes_classifier():
 def main() -> None:
     own_bayes_classifier()
     sklearn_bayes_classifier()
-    bert_classifier()
+    #bert_classifier()
 
 
 if __name__ == '__main__':
